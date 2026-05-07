@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>College Fair Student Registration</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="images\favicon-16x16.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            background: #d0d8e8;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .form-wrapper {
+            background: #e8ecf4;
+            border: 1px solid #aab;
+            width: 480px;
+            padding: 10px 14px 18px;
+        }
+
+        /* ── Header ── */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .header-left h2 {
+            font-size: 13px;
+            font-weight: bold;
+            color: #000;
+            line-height: 1.3;
+        }
+
+        .header-left p {
+            font-size: 11px;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .logo-area img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 10px;
+            font-weight: bold;
+            color: #c00;
+            text-align: center;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #888;
+            margin: 6px 0;
+        }
+
+        /* ── Form rows ── */
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            min-height: 22px;
+        }
+
+        .form-row label {
+            min-width: 160px;
+            font-size: 12px;
+            color: #000;
+            flex-shrink: 0;
+        }
+
+        .form-row label .req {
+            color: #c00;
+        }
+
+        .form-row input[type="text"],
+        .form-row input[type="tel"],
+        .form-row input[type="email"] {
+            flex: 1;
+            height: 20px;
+            border: 1px solid #666;
+            background: #fff;
+            font-size: 12px;
+            padding: 0 3px;
+        }
+
+        /* City / State / Zip row */
+        .city-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .city-row label {
+            min-width: 160px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .city-row .city-input {
+            flex: 1;
+            height: 20px;
+            border: 1px solid #666;
+            background: #fff;
+            font-size: 12px;
+            padding: 0 3px;
+            margin-right: 4px;
+        }
+
+        .city-row .state-select {
+            width: 36px;
+            height: 20px;
+            font-size: 11px;
+            border: 1px solid #666;
+            margin-right: 2px;
+        }
+
+        .city-row .zip-input {
+            width: 60px;
+            height: 20px;
+            border: 1px solid #666;
+            background: #fff;
+            font-size: 12px;
+            padding: 0 3px;
+        }
+
+        /* Gender / select rows */
+        .select-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .select-row label {
+            min-width: 160px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .select-row select {
+            height: 20px;
+            font-size: 12px;
+            border: 1px solid #666;
+        }
+
+        /* Birth Date row */
+        .dob-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .dob-row label {
+            min-width: 160px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .dob-row select {
+            height: 20px;
+            font-size: 11px;
+            border: 1px solid #666;
+            margin-right: 4px;
+        }
+
+        /* Textarea rows */
+        .textarea-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+
+        .textarea-row label {
+            min-width: 160px;
+            font-size: 12px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .textarea-row .textarea-wrap {
+            flex: 1;
+            position: relative;
+        }
+
+        .textarea-row textarea {
+            width: 100%;
+            height: 45px;
+            border: 1px solid #666;
+            background: #fff;
+            font-size: 12px;
+            padding: 2px 3px;
+            resize: none;
+        }
+
+        .textarea-row .sub-label {
+            font-size: 10px;
+            color: #333;
+            display: block;
+            margin-top: 1px;
+        }
+
+        /* Section heading */
+        .section-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #000;
+            margin: 8px 0 4px;
+        }
+
+        /* SAT row with note */
+        .sat-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .sat-row label {
+            min-width: 160px;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .sat-row input {
+            width: 80px;
+            height: 20px;
+            border: 1px solid #666;
+            background: #fff;
+            font-size: 12px;
+            padding: 0 3px;
+        }
+
+        .sat-row .sat-note {
+            font-size: 10px;
+            color: #555;
+            margin-left: 8px;
+        }
+
+        /* Required note */
+        .required-note {
+            font-size: 10px;
+            color: #c00;
+            text-align: center;
+            margin: 8px 0 10px;
+        }
+
+        /* Buttons */
+        .btn-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn-row button {
+            padding: 4px 18px;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px outset #888;
+            cursor: pointer;
+            background: linear-gradient(to bottom, #d8e0f0, #b0bcd8);
+            color: #000;
+            border-radius: 2px;
+        }
+
+        .btn-row button:hover {
+            background: linear-gradient(to bottom, #c0ccec, #98a8cc);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-wrapper">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <h2>Your College Fair or Open House Student Registration</h2>
+                <p>Sunday, January 30 – Monday, January 31, 2011<br>
+                    Your Venue<br>
+                    Philadelphia, PA</p>
+            </div>
+            <div class="logo-area">
+                <!-- Placeholder shield/logo -->
+                <svg width="58" height="58" viewBox="0 0 58 58" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="29,2 55,14 55,34 29,56 3,34 3,14" fill="#003580" stroke="#002050"
+                        stroke-width="2" />
+                    <polygon points="29,8 50,18 50,34 29,50 8,34 8,18" fill="#1459a8" />
+                    <text x="29" y="34" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold"
+                        font-family="Arial">CFA</text>
+                </svg>
+                <span class="logo-text">College Fair Association</span>
+            </div>
+        </div>
+
+        <hr />
+        <form></form>
+        <form id="registration-form">
+
+            <!-- First Name -->
+            <div class="form-row">
+                <label>First Name</label>
+                <input type="text" id="first-name" name="first_name" placeholder="first_name" />
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-row">
+                <label>Last Name <span class="req">*</span></label>
+                <input type="text" id="last-name" name="last_name" />
+            </div>
+
+            <!-- Home Address 1 -->
+            <div class="form-row">
+                <label>Home Address 1 <span class="req">*</span></label>
+                <input type="text" id="address1" name="address1" />
+            </div>
+
+            <!-- Home Address 2 -->
+            <div class="form-row">
+                <label>Home Address 2</label>
+                <input type="text" id="address2" name="address2" />
+            </div>
+
+            <!-- City / State / Zip -->
+            <div class="city-row">
+                <label>City <span class="req">*</span>, State <span class="req">*</span> Zip <span
+                        class="req">*</span></label>
+                <input class="city-input" type="text" id="city" name="city" placeholder="City" />
+                <select class="state-select" id="state" name="state">
+                    <option value=""></option>
+                    <option>AL</option>
+                    <option>AK</option>
+                    <option>AZ</option>
+                    <option>AR</option>
+                    <option>CA</option>
+                    <option>CO</option>
+                    <option>CT</option>
+                    <option>DE</option>
+                    <option>FL</option>
+                    <option>GA</option>
+                    <option>HI</option>
+                    <option>ID</option>
+                    <option>IL</option>
+                    <option>IN</option>
+                    <option>IA</option>
+                    <option>KS</option>
+                    <option>KY</option>
+                    <option>LA</option>
+                    <option>ME</option>
+                    <option>MD</option>
+                    <option>MA</option>
+                    <option>MI</option>
+                    <option>MN</option>
+                    <option>MS</option>
+                    <option>MO</option>
+                    <option>MT</option>
+                    <option>NE</option>
+                    <option>NV</option>
+                    <option>NH</option>
+                    <option selected>NJ</option>
+                    <option>NM</option>
+                    <option>NY</option>
+                    <option>NC</option>
+                    <option>ND</option>
+                    <option>OH</option>
+                    <option>OK</option>
+                    <option>OR</option>
+                    <option>PA</option>
+                    <option>RI</option>
+                    <option>SC</option>
+                    <option>SD</option>
+                    <option>TN</option>
+                    <option>TX</option>
+                    <option>UT</option>
+                    <option>VT</option>
+                    <option>VA</option>
+                    <option>WA</option>
+                    <option>WV</option>
+                    <option>WI</option>
+                    <option>WY</option>
+                </select>
+                <input class="zip-input" type="text" id="zip" name="zip" maxlength="7" />
+            </div>
+
+            <!-- Home Phone -->
+            <div class="form-row">
+                <label>Home Phone <span class="req">*</span></label>
+                <input type="" id="home-phone" name="home_phone" />
+            </div>
+
+            <!-- E-mail -->
+            <div class="form-row">
+                <label>E-mail <span class="req">*</span></label>
+                <input type="email" id="email" name="email" />
+            </div>
+
+            <!-- Gender -->
+            <div class="select-row">
+                <label>Gender <span class="req">*</span></label>
+                <select id="gender" name="gender">
+                    <option value=""></option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                    <option>Prefer not to say</option>
+                </select>
+            </div>
+
+            <!-- Birth Date -->
+            <div class="dob-row">
+                <label>Birth Date <span class="req">*</span></label>
+                <select id="dob-month" name="dob_month">
+                    <option>Month</option>
+                    <option>01 - Jan</option>
+                    <option>02 - Feb</option>
+                    <option>03 - Mar</option>
+                    <option>04 - Apr</option>
+                    <option>05 - May</option>
+                    <option>06 - Jun</option>
+                    <option>07 - Jul</option>
+                    <option>08 - Aug</option>
+                    <option>09 - Sep</option>
+                    <option>10 - Oct</option>
+                    <option>11 - Nov</option>
+                    <option>12 - Dec</option>
+                </select>
+                <select id="dob-day" name="dob_day">
+                    <option>Day</option>
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                    <option>24</option>
+                    <option>25</option>
+                    <option>26</option>
+                    <option>27</option>
+                    <option>28</option>
+                    <option>29</option>
+                    <option>30</option>
+                    <option>31</option>
+                </select>
+                <select id="dob-year" name="dob_year">
+                    <option>Year</option>
+                    <option>2011</option>
+                    <option>2010</option>
+                    <option>2009</option>
+                    <option>2008</option>
+                    <option>2007</option>
+                    <option>2006</option>
+                    <option>2005</option>
+                    <option>2004</option>
+                    <option>2003</option>
+                    <option>2002</option>
+                    <option>2001</option>
+                    <option>2000</option>
+                    <option>1999</option>
+                    <option>1998</option>
+                    <option>1997</option>
+                    <option>1996</option>
+                    <option>1995</option>
+                    <option>1994</option>
+                    <option>1993</option>
+                    <option>1992</option>
+                </select>
+            </div>
+
+            <!-- Ethnicity -->
+            <div class="select-row">
+                <label>Ethnicity <span class="req">*</span></label>
+                <select id="ethnicity" name="ethnicity" style="flex:1;">
+                    <option value=""></option>
+                    <option>American Indian / Alaska Native</option>
+                    <option>Asian</option>
+                    <option>Black / African American</option>
+                    <option>Hispanic / Latino</option>
+                    <option>Native Hawaiian / Pacific Islander</option>
+                    <option>White / Caucasian</option>
+                    <option>Two or More Races</option>
+                    <option>Prefer not to say</option>
+                </select>
+            </div>
+
+            <!-- Citizenship -->
+            <div class="select-row">
+                <label>Citizenship <span class="req">*</span></label>
+                <select id="citizenship" name="citizenship" style="flex:1;">
+                    <option value=""></option>
+                    <option>U.S. Citizen</option>
+                    <option>Permanent Resident</option>
+                    <option>International Student</option>
+                </select>
+            </div>
+
+            <!-- Academic Interest -->
+            <div class="textarea-row">
+                <label>Academic Interest / Intended Major(s) <span class="req">*</span></label>
+                <div class="textarea-wrap">
+                    <textarea id="academic-interest" name="academic_interest"></textarea>
+                    <span class="sub-label">Select up to 3 areas of interest</span>
+                </div>
+            </div>
+
+            <!-- Extracurricular Activities -->
+            <div class="section-title">Extracurricular Activities</div>
+
+            <!-- Freshman or Transfer -->
+            <div class="select-row">
+                <label>Freshman or Transfer <span class="req">*</span></label>
+                <select id="freshman-transfer" name="freshman_transfer">
+                    <option value=""></option>
+                    <option>Freshman</option>
+                    <option>Transfer</option>
+                </select>
+            </div>
+
+            <!-- Starting Term -->
+            <div class="select-row">
+                <label>Starting Term <span class="req">*</span></label>
+                <select id="starting-term" name="starting_term">
+                    <option value=""></option>
+                    <option>Fall 2011</option>
+                    <option>Spring 2012</option>
+                    <option>Fall 2012</option>
+                    <option>Spring 2013</option>
+                </select>
+            </div>
+
+            <!-- High School Name -->
+            <div class="select-row">
+                <label>High School Name <span class="req">*</span></label>
+                <select id="hs-name" name="hs_name" style="flex:1;">
+                    <option value=""></option>
+                    <option>School A</option>
+                    <option>School B</option>
+                    <option>School C</option>
+                </select>
+            </div>
+
+            <!-- High School City -->
+            <div class="form-row">
+                <label>High School City <span class="req">*</span></label>
+                <input type="text" id="hs-city" name="hs_city" />
+            </div>
+
+            <!-- H.S. Graduation Year -->
+            <div class="select-row">
+                <label>H.S. Graduation Year</label>
+                <select id="grad-year" name="grad_year">
+                    <option value=""></option>
+                    <option>2011</option>
+                    <option>2012</option>
+                    <option>2013</option>
+                    <option>2014</option>
+                    <option>2015</option>
+                </select>
+            </div>
+
+            <!-- SAT/ACT Scores -->
+            <div class="sat-row">
+                <label>SAT/ACT Scores</label>
+                <input type="text" id="sat-act" name="sat_act" maxlength="10" />
+                <span class="sat-note">* Leave blank if not taken</span>
+            </div>
+
+            <div class="required-note">* Denotes Required Information</div>
+
+            <!-- Buttons -->
+            <div class="btn-row">
+                <button type="submit" id="btn-submit">Submit</button>
+                <button type="button" id="btn-add-parent">Add Parent or Guardian</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+
+</html>

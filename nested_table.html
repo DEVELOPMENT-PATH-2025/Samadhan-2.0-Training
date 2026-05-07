@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Device Specifications Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        /* Outer table */
+        .outer-table {
+            border-collapse: collapse;
+            border: 2px solid black;
+        }
+
+        .outer-table th,
+        .outer-table td {
+            border: 2px solid black;
+            padding: 8px 12px;
+        }
+
+        /* Header row styling */
+        .outer-table thead th {
+            background-color: #00BCD4;
+            /* teal/cyan */
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Inner nested table */
+        .inner-table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .inner-table th,
+        .inner-table td {
+            border: 2px solid black;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        /* Inner table header styling */
+        .inner-table thead th {
+            background-color: #FFD700;
+            /* gold/yellow */
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table class="outer-table" border="1">
+        <thead>
+            <tr>
+                <th>Device</th>
+                <th>Brand</th>
+                <th>Specifications</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Smartphone row with nested table -->
+            <tr>
+                <td>Smartphone</td>
+                <td>Apple</td>
+                <td>
+                    <table class="inner-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Storage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>iPhone 12 Pro</td>
+                                <td>256GB</td>
+                            </tr>
+                            <tr>
+                                <td>iPhone SE</td>
+                                <td>128GB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Laptop row -->
+            <tr>
+                <td>Laptop</td>
+                <td>HP</td>
+                <td>15.6" Display</td>
+            </tr>
+
+            <!-- Tablet row -->
+            <tr>
+                <td>Tablet</td>
+                <td>Samsung</td>
+                <td>
+                    <table class="inner-table">
+                        <thead>
+                            <tr>
+                                <th>Model</th>
+                                <th>Storage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Samsung S24 Ultra</td>
+                                <td>256GB</td>
+                            </tr>
+                            <tr>
+                                <td>Samsung Tab S9</td>
+                                <td>128GB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
